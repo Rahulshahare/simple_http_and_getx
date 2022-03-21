@@ -1,6 +1,6 @@
 # simple_http_and_getx
 
-A new Flutter project.
+A demonstration of http (API Request) with getx in #Flutter
 
 ## Getting Started
 
