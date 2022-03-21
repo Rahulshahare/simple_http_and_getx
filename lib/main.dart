@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -52,15 +53,29 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
   Timer? timer;
+  List users = [];
+
+  @override
+  void initState() {
+    super.initState();
+    //timer = Timer.periodic(Duration(seconds: 1), (Timer t) => _fetchData());
+  }
 
   void _fetchData() async {
     final response =
-        await http.get(Uri.parse('https://jsonplaceholder.typicode.com/posts'));
+        await http.get(Uri.parse('https://jsonplaceholder.typicode.com/users'));
 
     if (response.statusCode == 200) {
-      print(response.body);
+      //print(response.body);
+      this.setState(() {
+        users = jsonDecode(response.body);
+      });
     } else {
       throw Exception('Failed to load album');
+    }
+
+    if (users != '') {
+      print(users);
     }
   }
 
