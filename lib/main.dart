@@ -54,9 +54,16 @@ class _MyHomePageState extends State<MyHomePage> {
   void _fetchData() async {
     final response =
         await http.get(Uri.parse('https://jsonplaceholder.typicode.com/posts'));
+
+    if (response.statusCode == 200) {
+      print(response.body);
+    } else {
+      throw Exception('Failed to load album');
+    }
   }
 
   void _incrementCounter() {
+    _fetchData();
     setState(() {
       // This call to setState tells the Flutter framework that something has
       // changed in this State, which causes it to rerun the build method below
