@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Simple HTTP & GETX',
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -62,13 +62,14 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _fetchData() async {
-    final response =
-        await http.get(Uri.parse('https://jsonplaceholder.typicode.com/users'));
+    final response = await http.get(
+        Uri.parse('https://www.msginc.ml/api/emoji?sendEmoji=smileyAndPeople'));
 
     if (response.statusCode == 200) {
       //print(response.body);
       this.setState(() {
         users = jsonDecode(response.body);
+        //print(response.body);
       });
     } else {
       throw Exception('Failed to load album');
@@ -76,6 +77,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
     if (users != '') {
       print(users);
+      print(users.length);
+
+      for (var i = 0; i < users.length; i++) {
+        print("Emoji = " + users[i][0] + " Name = " + users[i][1]);
+      }
     }
   }
 
