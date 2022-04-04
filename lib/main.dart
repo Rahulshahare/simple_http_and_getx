@@ -54,6 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
   Timer? timer;
   List users = [];
+  var emoji;
 
   @override
   void initState() {
@@ -69,6 +70,7 @@ class _MyHomePageState extends State<MyHomePage> {
       //print(response.body);
       this.setState(() {
         users = jsonDecode(response.body);
+        emoji = users[0][0];
         //print(response.body);
       });
     } else {
